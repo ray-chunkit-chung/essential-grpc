@@ -1,4 +1,4 @@
-# essential-grpc
+# essential grpc Quick start
 
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/ray-chunkit-chung/essential-grpc/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/ray-chunkit-chung/essential-grpc/tree/main)
 
@@ -12,11 +12,7 @@
 
 ![image](https://user-images.githubusercontent.com/26511618/220845488-14a3640f-c7ab-46a3-9b05-ef33d15dbe64.png)
 
-## Serving ML models with gRPC
-
-<https://towardsdatascience.com/serving-ml-models-with-grpc-2116cf8374dd>
-
-## Getting started of gRPC
+## gRPC Quick start
 
 ### Install python venv and packages
 
@@ -27,7 +23,7 @@ python -m pip install --upgrade pip
 pip install --upgrade -r requirements.txt
 ```
 
-### Hello World
+### Example 1 Hello World
 
 This example is from [This code's documentation lives on the grpc.io site.](https://grpc.io/docs/languages/python/quickstart)
 
@@ -74,7 +70,7 @@ We can modifiy the service by the following steps:
 4. Update the server in src\helloworld\greeter_server.py
 5. Update the client in src\helloworld\greeter_client.py
 
-### Generate server and client from proto
+### Example 2 Generate server and client from proto
 
 The code is by <https://grpc.io/docs/languages/python/basics/>
 
@@ -95,3 +91,17 @@ The following steps will create the server and client
     - src\route_guide\route_guide_db.json
 
 3. Implement the client by creating a new file src\route_guide\route_guide_client.py
+
+### Example 3 Machine learning prediction service
+
+<https://blog.roboflow.com/deploy-machine-learning-models-pytorch-grpc-asyncio/>
+
+<https://yu-ishikawa.medium.com/machine-learning-as-a-microservice-in-python-16ba4b9ea4ee>
+
+<https://towardsdatascience.com/serving-deep-learning-model-in-production-using-fast-and-efficient-grpc-6dfe94bf9234>
+
+<https://towardsdatascience.com/serving-ml-models-with-grpc-2116cf8374dd>
+
+### Example 4 Serve with nginx
+
+<https://www.nginx.com/blog/nginx-1-13-10-grpc/>
