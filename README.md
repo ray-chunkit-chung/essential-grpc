@@ -72,3 +72,4 @@ We can modifiy the service by the following steps:
     - helloworld_pb2.pyi
 
 4. Update the server in src\helloworld\greeter_server.py
+5. Update the client in src\helloworld\greeter_client.py
