@@ -1,0 +1,63 @@
+# Use the latest 2.1 version of CircleCI pipeline process engine.
+# See: https://circleci.com/docs/2.0/configuration-reference
+version: 2.1
+
+# Define commands
+commands:
+  setup:
+    steps:
+      - setup_remote_docker:
+          version: 20.10.14
+          docker_layer_caching: true
+  test:
+    steps:
+      - setup
+      - checkout
+      - run: echo "this is the test job"
+      - run:
+          name: Unit test
+          command: |
+            echo $DOCKER_USERNAME
+            pip install --upgrade pytest
+            python -m pytest tests/
+  build:
+    steps:
+      - setup
+      - checkout
+      - run: echo "this is the build job"
+      - run:
+          name: Build and push image to dockerhub
+          command: |
+            docker build -t $DOCKER_USERNAME/azure-docker-fastapi-nginx:latest .
+            echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+            docker push $DOCKER_USERNAME/azure-docker-fastapi-nginx:latest
+
+# Define the executors for this project
+executors:
+  docker-executor:
+    docker:
+      - image: cimg/python:3.11.2
+
+# Define a job to be invoked later in a workflow.
+# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
+jobs:
+  # Specify test executors
+  test-job:
+    executor: docker-executor
+    steps:
+      - test
+
+  # Specify build executors
+  build-job:
+    executor: docker-executor
+    steps:
+      - build
+
+# Invoke jobs via workflows
+# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
+workflows:
+  gRPC-workflow:
+    jobs:
+      - test-job:
+          context:
+            - docker-auth
