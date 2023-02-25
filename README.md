@@ -73,3 +73,25 @@ We can modifiy the service by the following steps:
 
 4. Update the server in src\helloworld\greeter_server.py
 5. Update the client in src\helloworld\greeter_client.py
+
+### Generate server and client from proto
+
+The code is by <https://grpc.io/docs/languages/python/basics/>
+
+The following steps will create the server and client
+
+1. Generate the gRPC client and server interfaces from src\protos\route_guide.proto
+
+    ```bash
+    cd src
+    mkdir route_guide
+    cd route_guide
+    python -m grpc_tools.protoc -I../protos --python_out=. --pyi_out=. --grpc_python_out=. ../protos/route_guide.proto
+    ```
+
+2. Implement the server by creating files
+    - src\route_guide\route_guide_server.py
+    - src\route_guide\route_guide_resources.py
+    - src\route_guide\route_guide_db.json
+
+3. Implement the client by creating a new file src\route_guide\route_guide_client.py
