@@ -18,7 +18,6 @@
 
 ## Getting started of gRPC
 
-
 ### Install python venv and packages
 
 ```bash
@@ -32,8 +31,8 @@ pip install --upgrade -r requirements.txt
 
 This example is from [This code's documentation lives on the grpc.io site.](https://grpc.io/docs/languages/python/quickstart)
 
-
 Start server
+
 ```bash
 source .venv/Scripts/activate
 cd src/helloworld
@@ -41,9 +40,35 @@ python greeter_server.py
 ```
 
 From another terminal, run the client:
+
 ```bash
 source .venv/Scripts/activate
 cd src/helloworld
 python greeter_client.py
 ```
 
+We can modifiy the service by the following steps:
+
+1. Update rpc in service in src/protos/helloworld.proto
+
+    ```proto
+    service Greeter {
+        // ...
+        // Add new rpc here
+        rpc SayHelloAgain (HelloRequest) returns (HelloReply) {}
+        // ...
+    }
+    ```
+
+2. Run at src\helloworld
+
+    ```bash
+    python -m grpc_tools.protoc -I../protos --python_out=. --pyi_out=. --grpc_python_out=. ../protos/helloworld.proto
+    ```
+
+3. Confirm three files should be modified:
+    - helloworld_pb2_grpc.py (contains our generated request and response classes)
+    - helloworld_pb2.py (contains our generated client and server classes)
+    - helloworld_pb2.pyi
+
+4. Update the server in src\helloworld\greeter_server.py

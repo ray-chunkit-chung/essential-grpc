@@ -26,6 +26,18 @@ class Greeter(helloworld_pb2_grpc.GreeterServicer):
     def SayHello(self, request, context):
         return helloworld_pb2.HelloReply(message='Hello, %s!' % request.name)
 
+    def SayHelloAgain(self, request, context):
+        return helloworld_pb2.HelloReply(message=f'Hello again, {request.name}!')
+
+    def SayHello3(self, request, context):
+        return helloworld_pb2.HelloReply(message=f'Hello x3, {request.name}!')
+
+    def SayHello4(self, request, context):
+        return helloworld_pb2.HelloReply(message=f'Hello x4, {request.name}!')
+
+    def SayHello5(self, request, context):
+        return helloworld_pb2.HelloReply(message=f'Hello x5, {request.name}!')
+
 
 def serve():
     port = '50051'
