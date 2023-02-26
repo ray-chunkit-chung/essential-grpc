@@ -94,13 +94,37 @@ The following steps will create the server and client
 
 ### Example 3 Machine learning prediction service
 
-<https://blog.roboflow.com/deploy-machine-learning-models-pytorch-grpc-asyncio/>
+Reference
 
-<https://yu-ishikawa.medium.com/machine-learning-as-a-microservice-in-python-16ba4b9ea4ee>
+- <https://blog.roboflow.com/deploy-machine-learning-models-pytorch-grpc-asyncio/>
+- <https://yu-ishikawa.medium.com/machine-learning-as-a-microservice-in-python-16ba4b9ea4ee>
+- <https://towardsdatascience.com/serving-deep-learning-model-in-production-using-fast-and-efficient-grpc-6dfe94bf9234>
+- <https://towardsdatascience.com/serving-ml-models-with-grpc-2116cf8374dd>
 
-<https://towardsdatascience.com/serving-deep-learning-model-in-production-using-fast-and-efficient-grpc-6dfe94bf9234>
+1. Create server/client interface for the prediction engine
 
-<https://towardsdatascience.com/serving-ml-models-with-grpc-2116cf8374dd>
+    ```bash
+    cd src/iris
+    python -m grpc_tools.protoc -I../protos --python_out=. --pyi_out=. --grpc_python_out=. ../protos/iris.proto
+    ```
+
+2. Implement
+    - src\iris\train.py
+    - src\iris\predict_iris_client.py
+    - src\iris\predict_iris_server.py
+
+3. Start prediction server
+
+    ```bash
+    cd src\iris
+    python predict_iris_client.py
+    ```
+
+4. Test by making prediction
+
+    ```bash
+    python predict_iris_client.py run --sepal-length 1.0 --sepal-width 1.0 --petal-length 1.0 --petal-width 1.0
+    ```
 
 ### Example 4 Serve with nginx
 
