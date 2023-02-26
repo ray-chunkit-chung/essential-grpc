@@ -126,6 +126,10 @@ Reference
     python predict_iris_client.py run --sepal-length 1.0 --sepal-width 1.0 --petal-length 1.0 --petal-width 1.0
     ```
 
-### Example 4 Serve with nginx
+### Example 4 Serve with nginx/Azure
 
-<https://www.nginx.com/blog/nginx-1-13-10-grpc/>
+- <https://www.nginx.com/blog/nginx-1-13-10-grpc/>
+- <https://www.thorsten-hans.com/exposing-grpc-services-in-azure-container-apps/>
+- <https://github.com/Azure/app-service-linux-docs/blob/master/HowTo/gRPC/use_gRPC_with_dotnet.md>
+
+Coming soon..
